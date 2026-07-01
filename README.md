@@ -1,126 +1,28 @@
 # AuxiTalk Plugin Templates
 
-> Hub oficial de templates e documentação para criação de plugins AuxiTalk.  
-> Official hub of templates and documentation for creating AuxiTalk plugins.
+Official hub for AuxiTalk plugin templates and plugin authoring documentation.
 
----
-
-## Português (PT-BR)
-
-## Visão geral
-
-Este repositório reúne templates oficiais e documentação para criar plugins compatíveis com o AuxiTalk.
-
-O objetivo é permitir que qualquer pessoa crie plugins em diferentes linguagens seguindo o mesmo protocolo, manifesto e boas práticas de segurança.
-
-## Templates disponíveis
-
-```txt
-templates/typescript-node   TypeScript/Node.js
-templates/go                Go
-```
-
-## Qual template escolher?
-
-Use **TypeScript/Node.js** para:
-
-- integrações web;
-- automação de navegador;
-- overlays desktop baseados em JS;
-- protótipos rápidos.
-
-Use **Go** para:
-
-- plugins leves;
-- binários únicos;
-- ferramentas locais;
-- plugins de alta eficiência.
-
-## Como começar
-
-### TypeScript/Node.js
-
-```sh
-cd templates/typescript-node
-npm install
-npm run setup
-npm test
-npm run build
-```
-
-### Go
-
-```sh
-cd templates/go
-go test ./...
-go build -o plugin ./cmd/plugin
-```
-
-## Conceitos principais
-
-Todo plugin AuxiTalk possui:
-
-- `plugin.json`;
-- comunicação JSON-RPC 2.0 sobre stdio;
-- lifecycle (`plugin.handshake`, `plugin.start`, `plugin.stop`, `plugin.health`);
-- capabilities;
-- permissões declaradas;
-- logs via stderr.
-
-## Regras importantes
-
-- `stdout` deve conter somente JSON-RPC.
-- `stderr` deve ser usado para logs.
-- não salve tokens no repositório.
-- declare permissões mínimas.
-- valide entradas.
-- ações sensíveis devem usar `action.request`.
-
-## Documentação
-
-```txt
-docs/development.md
-docs/protocol.md
-docs/security.md
-docs/publishing.md
-docs/sdk-helpers.md
-docs/protocol-harness.md
-```
-
----
-
-## English (EN)
+> Portuguese documentation: [README.pt-BR.md](README.pt-BR.md)
 
 ## Overview
 
-This repository contains official templates and documentation for creating AuxiTalk-compatible plugins.
+This repository helps developers create AuxiTalk-compatible plugins in different programming languages.
 
-The goal is to let anyone build plugins in different languages while following the same protocol, manifest format, and security practices.
+It is both:
+
+- a collection of official plugin templates;
+- a documentation hub for plugin authors.
+
+AuxiTalk plugins are external processes that communicate with AuxiTalk Core using JSON-RPC 2.0 over stdio.
 
 ## Available templates
 
-```txt
-templates/typescript-node   TypeScript/Node.js
-templates/go                Go
-```
+| Template | Path | Best for |
+| --- | --- | --- |
+| TypeScript/Node.js | `templates/typescript-node` | web integrations, browser automation, overlays, quick prototypes |
+| Go | `templates/go` | lightweight plugins, single binaries, local tools, efficient integrations |
 
-## Which template should I choose?
-
-Use **TypeScript/Node.js** for:
-
-- web integrations;
-- browser automation;
-- JS-based desktop overlays;
-- quick prototypes.
-
-Use **Go** for:
-
-- lightweight plugins;
-- single binaries;
-- local tools;
-- high-efficiency plugins.
-
-## Getting started
+## Quick start
 
 ### TypeScript/Node.js
 
@@ -140,33 +42,88 @@ go test ./...
 go build -o plugin ./cmd/plugin
 ```
 
-## Main concepts
+## What every plugin contains
 
-Every AuxiTalk plugin has:
+Every AuxiTalk plugin should include:
 
-- `plugin.json`;
+- `plugin.json` manifest;
 - JSON-RPC 2.0 over stdio communication;
-- lifecycle (`plugin.handshake`, `plugin.start`, `plugin.stop`, `plugin.health`);
-- capabilities;
+- lifecycle methods:
+  - `plugin.handshake`
+  - `plugin.start`
+  - `plugin.stop`
+  - `plugin.health`
 - declared permissions;
-- stderr logging.
+- declared capabilities;
+- stderr logging;
+- documentation for configuration, permissions, capabilities, and events.
 
-## Important rules
+## Basic protocol rules
 
-- `stdout` must contain only JSON-RPC.
-- `stderr` must be used for logs.
-- do not store tokens in the repository.
-- declare minimal permissions.
-- validate inputs.
+- `stdout` must contain only JSON-RPC messages.
+- `stderr` must be used for human-readable logs.
+- each JSON-RPC message must be one line.
+- plugins must declare minimal permissions.
+- plugins must validate external input.
 - sensitive actions must use `action.request`.
+- secrets must never be committed.
+
+## Template selection guide
+
+Choose **TypeScript/Node.js** if you are building:
+
+- a browser integration;
+- a WhatsApp Web or web app connector;
+- a desktop overlay using JS tooling;
+- a quick prototype;
+- an integration that depends on npm packages.
+
+Choose **Go** if you are building:
+
+- a lightweight local tool;
+- a single-binary plugin;
+- a memory or filesystem plugin;
+- a performance-sensitive integration;
+- a plugin that should run with minimal dependencies.
+
+## Repository structure
+
+```txt
+docs/                       plugin authoring documentation
+templates/typescript-node    TypeScript/Node.js template
+templates/go                 Go template
+README.md                    English overview
+README.pt-BR.md              Portuguese overview
+```
 
 ## Documentation
 
+- `docs/authoring.md`
+- `docs/development.md`
+- `docs/protocol.md`
+- `docs/security.md`
+- `docs/publishing.md`
+- `docs/sdk-helpers.md`
+- `docs/protocol-harness.md`
+
+## Recommended plugin repository layout
+
+Official plugins should usually live in separate repositories:
+
 ```txt
-docs/development.md
-docs/protocol.md
-docs/security.md
-docs/publishing.md
-docs/sdk-helpers.md
-docs/protocol-harness.md
+AuxiTalk/plugin-whatsapp-web
+AuxiTalk/plugin-openai
+AuxiTalk/plugin-sqlite-memory
+AuxiTalk/plugin-desktop-overlay
 ```
+
+This keeps plugins independently versioned, tested, and released.
+
+## Related repositories
+
+- `AuxiTalk/auxitalk` — core runtime.
+- `AuxiTalk/plugin-template` — templates and plugin authoring documentation.
+
+## License
+
+MIT
