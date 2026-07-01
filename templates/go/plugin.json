@@ -1,0 +1,10 @@
+{
+  "id": "my-go-plugin",
+  "name": "My Go Plugin",
+  "version": "0.1.0",
+  "runtime": "./plugin",
+  "entry": "",
+  "kind": "tool",
+  "permissions": ["event.emit"],
+  "capabilities": [{"name": "example.ping"}]
+}
