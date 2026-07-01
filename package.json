@@ -1,0 +1,22 @@
+{
+  "name": "@auxitalk/plugin-template",
+  "version": "0.1.0",
+  "description": "Official AuxiTalk plugin template",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": ["auxitalk", "plugin", "template", "json-rpc"],
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "latest",
+    "tsx": "latest",
+    "typescript": "latest",
+    "vitest": "latest"
+  }
+}
