@@ -19,6 +19,9 @@ Ele fornece:
 - lifecycle `plugin.handshake`, `plugin.start`, `plugin.stop`, `plugin.health`;
 - exemplo de capability `example.ping`;
 - testes básicos;
+- CLI `npm run setup` para renomear o template;
+- helpers para eventos, ações, memória e IA;
+- harness de protocolo para testes;
 - documentação de desenvolvimento e segurança.
 
 ### Como usar
@@ -27,6 +30,7 @@ Ele fornece:
 git clone https://github.com/AuxiTalk/plugin-template my-plugin
 cd my-plugin
 npm install
+npm run setup
 npm test
 npm run build
 npm run dev
@@ -72,6 +76,9 @@ It provides:
 - lifecycle `plugin.handshake`, `plugin.start`, `plugin.stop`, `plugin.health`;
 - example capability `example.ping`;
 - basic tests;
+- `npm run setup` CLI to rename the template;
+- helpers for events, actions, memory, and AI;
+- protocol harness for tests;
 - development and security documentation.
 
 ### How to use
@@ -80,6 +87,7 @@ It provides:
 git clone https://github.com/AuxiTalk/plugin-template my-plugin
 cd my-plugin
 npm install
+npm run setup
 npm test
 npm run build
 npm run dev
